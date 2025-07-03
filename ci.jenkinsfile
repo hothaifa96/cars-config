@@ -47,7 +47,6 @@ pipeline{
         stage("push new image"){
             steps{
                 echo "push new image"
-                 try {
                         // Login to Docker Hub
                         withCredentials([usernamePassword(credentialsId: 'hodi-docker', 
                                                         usernameVariable: 'DOCKER_USERNAME', 
@@ -56,7 +55,6 @@ pipeline{
                                 echo "Logging into Docker Hub..."
                                 echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
                             '''
-                        }
                         
                         // Push images
                         sh '''
