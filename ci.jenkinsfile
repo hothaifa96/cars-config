@@ -32,8 +32,9 @@ pipeline{
             steps{
                 sh "docker run -d -p 6000:6000 --name hodi ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 echo "preparing the env"
-                sh 'chmod 777 /backend/test/test.sh'
-                sh '/backend/test/test.sh all'
+                sh 'ls ./backend/test/test.sh'
+                sh 'chmod 777 ./backend/test/test.sh'
+                sh './backend/test/test.sh all'
             }
             post{
                 always{
