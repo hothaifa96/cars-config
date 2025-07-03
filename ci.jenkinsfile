@@ -18,15 +18,28 @@ pipeline{
         stage("build docker image"){
             steps{
                 echo "build docker image"
-                sh 'ls' 
-                sh 'ls ..' 
-                sh 'ls ../..'
+                docker build -t "${DOCKER_IMAGE}:${DOCKER_TAG}" ./backend/
             }
             
         }
         stage("test application"){
+            // agent{
+            //     docker{
+            //         image: "${DOCKER_IMAGE}:${DOCKER_TAG}"
+            //         -v './backend/test/test.sh:/application'
+            //     }
+            // }
             steps{
-                echo "test application"
+                sh "docker run -d -name hodi -p 6000:6000 ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                echo "preparing the env"
+                sh 'chmod 777 /application/test.sh'
+                sh '/application/test.sh all'
+            }
+            post{
+                always{
+                    sh 'docker rm -f hodi'
+                }
+
             }
             
         }
