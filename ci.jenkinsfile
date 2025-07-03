@@ -67,11 +67,7 @@ pipeline{
                             echo "Successfully pushed images to Docker Hub"
                         '''
                         
-                    } catch (Exception e) {
-                        echo "Push failed: ${e.getMessage()}"
-                        currentBuild.result = 'FAILURE'
-                        error("Docker push failed")
-                    }
+                                                        }
                 
             }
             
