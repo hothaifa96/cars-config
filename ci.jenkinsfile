@@ -1,0 +1,37 @@
+pipeline{
+    agent any
+    environment {
+        DOCKER_IMAGE = 'hothaifaz11/cars_api'
+        DOCKER_TAG = "${BUILD_NUMBER}"
+        GIT_REPO = 'https://github.com/hothaifa96/cars-code.git'
+        APP_DIR = 'cars-code'
+
+    }
+    stages{
+        stage("Cloning the application"){
+            steps{
+                echo "Cloning the application"
+            }
+            
+        }
+        stage("build docker image"){
+            steps{
+                echo "build docker image"
+            }
+            
+        }
+        stage("test application"){
+            steps{
+                echo "test application"
+            }
+            
+        }
+        stage("push new image"){
+            steps{
+                echo "push new image"
+            }
+            
+        }
+       
+   }
+}
