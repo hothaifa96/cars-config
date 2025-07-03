@@ -11,12 +11,16 @@ pipeline{
         stage("Cloning the application"){
             steps{
                 echo "Cloning the application"
+                git branch: 'main', url: "${GIT_REPO}"
             }
             
         }
         stage("build docker image"){
             steps{
                 echo "build docker image"
+                sh 'ls' 
+                sh 'ls ..' 
+                sh 'ls ../..'
             }
             
         }
