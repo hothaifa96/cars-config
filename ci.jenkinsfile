@@ -30,7 +30,7 @@ pipeline{
             //     }
             // }
             steps{
-                sh "docker run -d -p 6000:6000 --name hodi ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                sh "docker run -d -p 3000:3000 --name hodi ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 echo "preparing the env"
                 sh 'docker ps'
                 sh 'chmod 777 ./backend/test/test.sh'
